@@ -16,15 +16,15 @@ router.get('/', function(req, res, next) {
 });
 
 // Make sure User logged in
-// router.use('/project(s)',function(req,res,next){
-//   const checkUser = req.session.user;
-//   console.log(checkUser)
-//   if(checkUser)
-//       next();
-//   else{
-//     res.status(403).json('Login Required');
-//   }
-// });
+router.use('/project(s)',function(req,res,next){
+  const checkUser = req.session.user;
+  console.log(checkUser)
+  if(checkUser)
+      next();
+  else{
+    res.status(403).json('Login Required');
+  }
+});
 
 // Create new Project
 router.post('/project',function(req,res,next){
@@ -120,42 +120,44 @@ router.post('/project/:projectId/task',[
 
 //Optional End Points
 //Get All members
-router.get('/members',function(req,res){
-  Member.find().then((member) => res.send(member));
- });
+// router.get('/members',function(req,res){
+//   Member.find().then((member) => res.send(member));
+//  });
 
- //GET Statuses
- router.get('/statuses',function(req,res){
-  Status.find().then((status) => res.send(status));
- });
+//  //GET Statuses
+//  router.get('/statuses',function(req,res){
+//   Status.find().then((status) => res.send(status));
+//  });
 
- //GET tasks
- router.get('/tasks',async function(req,res){
-  const tasks = await Task.find().populate('status').exec();
- res.status(200).json(tasks);
- });
+//  //GET tasks
+//  router.get('/tasks',async function(req,res){
+//   const tasks = await Task.find().populate('status').exec();
+//  res.status(200).json(tasks);
+//  });
 
-  //Create Member
-router.post('/member',function(req,res){
-  let bulkSave = [{'type':'creator'},{'type':'member'}];
-  Member.create(bulkSave).then((member) => res.send(member));
+//   //Create Member
+// router.post('/member',function(req,res){
+//   let bulkSave = [{'type':'creator'},{'type':'member'}];
+//   Member.create(bulkSave).then((member) => res.send(member));
 
-});
+// });
 
- //save Status
- router.post('/status',function(req,res){
+//  //save Status
+//  router.post('/status',function(req,res){
 
-  let bulkSave = [{'type':'todo'},{'type':'progress'},{'type':'done'}];
+//   let bulkSave = [{'type':'todo'},{'type':'progress'},{'type':'done'}];
 
-  Status.create(bulkSave).then((status) => res.send(status));
+//   Status.create(bulkSave).then((status) => res.send(status));
 
-});
+// });
 
- router.delete('/projects',function(req,res){
-  Project.remove().then((project) => res.send(project));
- });
+//  router.delete('/projects',function(req,res){
+//   Project.remove().then((project) => res.send(project));
+//  });
 
- router.delete('/members',function(req,res){
-  Member.remove().then((project) => res.send(project));
- });
+//  router.delete('/members',function(req,res){
+//   Member.remove().then((project) => res.send(project));
+//  });
+
+
 module.exports = router;

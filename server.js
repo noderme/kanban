@@ -19,13 +19,13 @@ mongoose.connect(mongoURl, options,function(error){
 const connection = mongoose.connection;
 connection.once('open',() => {
 console.log('Database connected');
-global.server = connection;
+
 });
 connection.on('error',(err) => {
   console.log(err)
 });
 
 app.listen(8080,function(){
-    console.log('Server listening on 3000');
+    console.log('Server listening on 8080');
 });
 module.exports = app;
