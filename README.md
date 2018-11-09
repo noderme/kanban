@@ -1,5 +1,5 @@
 Simple Kanban API
-Problem
+
 This project is a web-service which exposes a REST API for a Kanban application: it allows Users to manage Tasks' progression through a Project.
 
 Users can:
